@@ -1,0 +1,99 @@
+Creating and Managing Users in Active Directory
+An Easy-to-Follow Guide for Beginners
+Step 1: Setting Up Your Virtual Environment
+To create a Domain Controller (DC) and a Client Machine, you need virtualization software such as VirtualBox, VMware Workstation, or Hyper-V.
+Download and Install VirtualBox (Recommended for Beginners)
+Go to the VirtualBox website.
+Download and install VirtualBox for your operating system.
+Download the Windows Server 2019 ISO and Windows 10 ISO (available through Microsoft Evaluation Center).
+Create a Virtual Machine for Your Domain Controller (DC)
+Open VirtualBox and click New to create a virtual machine.
+Name it "Windows Server 2019 DC" and set the following configurations:
+RAM: At least 4GB (recommended: 8GB).
+Hard Drive: 50GB+ (Dynamically Allocated).
+Network Adapter: Set to Internal Network (so it can communicate with the client machine).
+Install Windows Server 2019 using the downloaded ISO.
+Once installed, configure the server as a Domain Controller using Active Directory Domain Services (AD DS).
+Create a Virtual Machine for Your Client Machine (Windows 10)
+In VirtualBox, create a new VM and name it "Windows 10 Client".
+Set the following configurations:
+RAM: At least 2GB (recommended: 4GB).
+Hard Drive: 30GB+ (Dynamically Allocated).
+Network Adapter: Internal Network (same as the DC).
+Install Windows 10 using the ISO.
+Once installed, join it to the domain created in Windows Server 2019.
+
+Step 2: Download and Prepare the User Creation Script
+On your Domain Controller (DC), open Internet Explorer.
+Download the PowerShell user creation script (provided by your instructor or IT department).
+Save the script to your Desktop and extract it.
+Inside the extracted folder, locate:
+PowerShell script (for user creation).
+names.txt (list of users to be created).
+
+Step 3: Modify the User List
+Open "names.txt" in Notepad.
+Add your name at the top of the list (e.g., "Gustavo ColonRivera").
+Save and close the file.
+
+Step 4: Open PowerShell as Administrator
+Click Start, search for PowerShell ISE, and right-click to select "Run as Administrator".
+In PowerShell, enable script execution:
+powershell
+CopyEdit
+Set-ExecutionPolicy Unrestricted
+
+
+Press Enter and confirm by typing Y (Yes to All).
+
+Step 5: Understanding the Script
+The script will:
+✅ Read names from "names.txt" and create user accounts.
+✅ Set a default password for all accounts.
+✅ Place the users inside an Organizational Unit (OU) called "Users".
+✅ Ensure all accounts are enabled after creation.
+
+Step 6: Run the Script to Create Users
+In PowerShell, navigate to the script’s directory:
+powershell
+CopyEdit
+cd C:\Users\a-gcolonrivera\Desktop\UserCreationScript
+
+
+Run the script:
+powershell
+CopyEdit
+.\CreateUsers.ps1
+
+
+If prompted, select Run Once to execute the script.
+The script will display messages like:
+sql
+CopyEdit
+Creating user: a-gcolonrivera
+Creating user: jsmith
+Creating user: mrodriguez
+
+
+
+Step 7: Verify Users in Active Directory
+Open Active Directory Users and Computers (ADUC):
+Click Start → Administrative Tools → Active Directory Users and Computers.
+Navigate to the "Users" Organizational Unit (OU).
+Search for your account (gcolonrivera) using the Find option.
+
+Step 8: Test Login with a Domain Account
+On your Windows 10 client machine:
+Click Other User at the login screen.
+Sign in using your Active Directory username:
+Username: a-gcolonrivera
+Password: Password1 (default password).
+If login is successful, your account is now part of the Active Directory domain!
+
+Conclusion
+You have successfully:
+✔ Set up a Windows Server 2019 Domain Controller in VirtualBox.
+✔ Created a Windows 10 client machine and joined it to the domain.
+✔ Used PowerShell to create and manage Active Directory users.
+✔ Logged in as a domain user to verify the setup.
+
